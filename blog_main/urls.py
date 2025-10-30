@@ -19,9 +19,14 @@ from django.urls import path,include
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
+from blogs import views as BlogViews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'),
-    path('category/',include('blogs.urls'))
+    path('category/',include('blogs.urls')),
+    path('blog/<slug:slug>',BlogViews.blogs,name='blogs'),
+    path('register/',views.register,name='register'),
+    path('login/',views.Login,name='login'),
+    path('logout',views.Logout,name='logout')
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
